@@ -41,6 +41,10 @@ public class BoardGameCollection {
 
     /**
      * Reads board games from a CSV file and adds them to the collection.
+     * The CSV file has the following columns: Name, Rating, Difficulty, Players, Time, Year, Genre.
+     * The first row of the CSV file is a header row and is skipped.
+     * The data is read line by line and split by commas.
+     * Each line is used to create a new BoardGame object, which is then added to the collection.
      *
      * @param fileName The name of the CSV file to read from.
      */
@@ -131,8 +135,10 @@ public class BoardGameCollection {
 
     /**
      * Sorts the board games in the collection based on the given criteria using insertion sort.
+     * Implementation of insertion sort.
      *
      * @param criteria The criteria to sort by ('name', 'rating', 'difficulty', 'players', 'time', 'year', 'genre').
+     *
      */
     public void sortGames(String criteria) {
         for (int i = 1; i < games.size(); i++) {
@@ -182,7 +188,6 @@ public class BoardGameCollection {
                         j = j - 1;
                     }
                     break;
-                // Add other sorting criteria as needed
             }
             games.set(j + 1, key);
         }
@@ -191,7 +196,7 @@ public class BoardGameCollection {
     /**
      * Searches for a board game by its title using binary search with partial match.
      *
-     * @param title The title or partial title of the board game to search for.
+     * @param title The title or partial title of the board game to search for. Case-insensitive.
      * @return A list of board games that contain the given title as a substring.
      */
     public ArrayList<BoardGame> searchByTitle(String title) {

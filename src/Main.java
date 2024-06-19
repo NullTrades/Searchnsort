@@ -15,7 +15,7 @@ public class Main {
     public static final String YELLOW = "\u001B[33m";
     public static final String GREEN = "\u001B[32m";
     public static final String RESET = "\u001B[0m";
-    ProgramTimer wait = new ProgramTimer();
+
 
     /**
      * Displays the start screen of the program.
@@ -35,7 +35,7 @@ public class Main {
     /**
      * Prints the menu options for the user.
      */
-    public static void printMenu() {
+    public static void printMenu() { // INPUT
         System.out.println("\n1. Add a new game");
         System.out.println("2. Search for a game by title");
         System.out.println("3. Display all games sorted by a criteria");
@@ -55,8 +55,8 @@ public class Main {
 
         if (collection.isAdjustedCSVPresent()) {
             System.out.print("Load adjusted CSV file? (yes/no): ");
-            String loadAdjusted = scanner.nextLine();
-            if (loadAdjusted.equalsIgnoreCase("yes")) {
+            String loadAdjusted = scanner.nextLine(); // INPUT
+            if (loadAdjusted.equalsIgnoreCase("yes")) { // PROCESS
                 collection.readGamesFromCSV("C:\\Users\\jmook\\IdeaProjects\\SearchnSort\\src\\GameCollection - adjusted.csv");
             } else {
                 collection.readGamesFromCSV("C:\\Users\\jmook\\IdeaProjects\\SearchnSort\\src\\GameCollection.csv");
@@ -68,71 +68,71 @@ public class Main {
         startScreen();
         while (true) {
             printMenu();
-            System.out.print(GREEN + "Enter your choice: " + RESET);
+            System.out.print(GREEN + "Enter your choice: " + RESET); // INPUT
             String choice = scanner.nextLine();
 
-            switch (choice) {
+            switch (choice) { // PROCESS
                 case "1":
                     System.out.print("Enter the name: ");
-                    String name = scanner.nextLine();
+                    String name = scanner.nextLine(); // INPUT
                     System.out.print("Enter the rating: ");
-                    float rating = Float.parseFloat(scanner.nextLine());
+                    float rating = Float.parseFloat(scanner.nextLine()); // INPUT
                     System.out.print("Enter the difficulty: ");
-                    float difficulty = Float.parseFloat(scanner.nextLine());
+                    float difficulty = Float.parseFloat(scanner.nextLine()); // INPUT
                     System.out.print("Enter the number of players: ");
-                    int players = Integer.parseInt(scanner.nextLine());
+                    int players = Integer.parseInt(scanner.nextLine()); // INPUT
                     System.out.print("Enter the time: ");
-                    int time = Integer.parseInt(scanner.nextLine());
+                    int time = Integer.parseInt(scanner.nextLine()); // INPUT
                     System.out.print("Enter the year: ");
-                    int year = Integer.parseInt(scanner.nextLine());
+                    int year = Integer.parseInt(scanner.nextLine()); // INPUT
                     System.out.print("Enter the genre: ");
-                    String genre = scanner.nextLine();
-                    BoardGame newGame = new BoardGame(name, rating, difficulty, players, time, year, genre);
-                    collection.addGame(newGame);
+                    String genre = scanner.nextLine(); // INPUT
+                    BoardGame newGame = new BoardGame(name, rating, difficulty, players, time, year, genre); // PROCESS
+                    collection.addGame(newGame); // PROCESS
                     break;
 
                 case "2":
                     System.out.print("Enter the name to search for: ");
-                    String searchName = scanner.nextLine();
-                    ArrayList<BoardGame> matchedGames = collection.searchByTitle(searchName);
+                    String searchName = scanner.nextLine(); // INPUT
+                    ArrayList<BoardGame> matchedGames = collection.searchByTitle(searchName); // PROCESS
                     if (!matchedGames.isEmpty()) {
-                        System.out.println("Found games:");
+                        System.out.println("Found games:"); // OUTPUT
                         collection.printGames(matchedGames);
                     } else {
-                        System.out.println("No games found");
+                        System.out.println("No games found"); // OUTPUT
                     }
                     break;
 
                 case "3":
                     System.out.print("Enter the criteria to sort by (name, rating, difficulty, players, time, year, genre): ");
-                    String criteria = scanner.nextLine();
-                    collection.sortGames(criteria);
-                    collection.printGames(collection.getGames());
+                    String criteria = scanner.nextLine(); // INPUT
+                    collection.sortGames(criteria); // PROCESS
+                    collection.printGames(collection.getGames()); // OUTPUT
                     break;
 
                 case "4":
                     System.out.print("Enter the name of the game to remove: ");
-                    String removeName = scanner.nextLine();
-                    boolean removed = collection.removeGame(removeName);
+                    String removeName = scanner.nextLine(); // INPUT
+                    boolean removed = collection.removeGame(removeName); // PROCESS
                     if (removed) {
-                        System.out.println("Game removed successfully.");
+                        System.out.println("Game removed successfully."); // OUTPUT
                     } else {
-                        System.out.println("Game not found.");
+                        System.out.println("Game not found."); // OUTPUT
                     }
                     break;
 
                 case "5":
-                    collection.saveAdjustedGamesToCSV();
+                    collection.saveAdjustedGamesToCSV(); // OUTPUT
                     scanner.close();
                     return;
 
                 case "6":
-                    collection.resetToOriginal();
-                    System.out.println("Reset to original CSV data.");
+                    collection.resetToOriginal(); // PROCESS
+                    System.out.println("Reset to original CSV data."); // OUTPUT
                     break;
 
                 default:
-                    System.out.println("Invalid choice. Please try again.");
+                    System.out.println("Invalid choice. Please try again."); // OUTPUT
             }
         }
     }

@@ -40,13 +40,33 @@ public class BoardGame {
     }
 
     // Getters and Setters for each attribute
-    public String getName() { return name; }
-    public float getRating() { return rating; }
-    public float getDifficulty() { return difficulty; }
-    public int getPlayers() { return players; }
-    public int getTime() { return time; }
-    public int getYear() { return year; }
-    public String getGenre() { return genre; }
+    public String getName() {
+        return name;
+    }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public float getDifficulty() {
+        return difficulty;
+    }
+
+    public int getPlayers() {
+        return players;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
 
     @Override
     public String toString() {
